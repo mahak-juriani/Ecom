@@ -1,0 +1,40 @@
+Nav Bar:
+--------
+
+create components:
+Home 
+About
+Resume
+Contact
+
+<header>
+    <div>
+        Icon
+    </div>
+
+    <nav>
+        Home
+        About
+        Resume
+        Contact
+    </nav>
+</header>
+css:
+
+div
+    display: flex;
+
+The 4 components would be clickable(a new page opens through the link)
+
+Icons
+
+On hover, the element will get underlined.
+---------------------------------------------------------------------------------------------------------------------------
+
+NavBar Components:
+
+1) Use a ul as a container
+2) have 4 li's
+3) We will use icons to render the images
+4) We will create the underline effect using 'after'.
+5) 
