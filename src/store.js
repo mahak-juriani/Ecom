@@ -10,7 +10,7 @@ function cartReducer(state = { items: {}}, action){
                         ...state.items,
                         [product.id]: {
                             ...state.items[product.id],
-                            quantity : state.items[product.id].quantity+1;
+                            quantity : state.items[product.id].quantity + 1
                         }
                     }
                 }
