@@ -4,6 +4,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
 import Categories from "../Categories/Categories";
+import { loadCategories } from "../../stores/Categories";
+import { useDispatch, useSelector } from "react-redux";
 function Products() {
     // const products = [
     //       {
@@ -40,6 +42,7 @@ function Products() {
   // let products = [];
 
   let [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   console.log("products")
   console.log(useWindowSize());
   useEffect(() => {
@@ -51,9 +54,14 @@ function Products() {
       console.log(res);
       setProducts(res);
     })
-  }, [])
+    dispatch(loadCategories());
+  }, []);
 
-  
+  let categories = useSelector((state) => state.categories.categories);
+  let currentCategory = useSelector((state) => state.categories.currentCategory);
+  if (categories.length === 0) {
+    return <div>Loading...</div>
+} else {
     return (
       <div>
         <div><Effect /></div>
@@ -65,6 +73,7 @@ function Products() {
             }
         </div>
     )
+  }
 }
 export let a = 10;
 export let b = 20;

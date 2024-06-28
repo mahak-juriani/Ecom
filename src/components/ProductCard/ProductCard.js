@@ -1,8 +1,9 @@
 import './ProductCard.css';
 import ReduxAddToCart from '../ReduxAddToCart';
 import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import logo1 from '../../assests/logo1.png';
-function ProductCard({ product }) {
+function ProductCard({ product, category }) {
   var a = 10;
   a = a + 1;
   let pRef = useRef(0);
@@ -10,6 +11,8 @@ function ProductCard({ product }) {
   let oRef = useRef(0);
   let [inputV, setInputV] = useState('Class');
   console.log("pc", product.id)
+  const categories = useSelector((state) => state.categories.categories);
+  let currentCategory = useSelector((state) => state.categories.currentCategory);
 
   // setInput(value);
   function printTitle() {
@@ -30,9 +33,14 @@ function ProductCard({ product }) {
     setInputV(e.target.value);
   }
 
+  if (currentCategory !== 0 && product.category !== currentCategory) {
+    return null;
+  }
+
   return (
     <div className="product-card">
-      <p onClick={printTitle}> {product.title}</p>
+      <p onClick={printTitle}>{product.title}</p>
+      <p>{(product.category !== undefined && categories[product.category-1].name)}</p>
       <p ref={pRef}> {product.price.value}</p>
       <img src={logo1} />
       <input type="text" onChange={displayOutput} ref={iRef} value={inputV} />
