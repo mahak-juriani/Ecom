@@ -4,6 +4,8 @@ import Products from './components/Products/Products';
 import { useState } from 'react';
 import CartContext from './context/CartContext';
 import Cart from './components/Cart';
+import { Provider } from 'react-redux/es';
+import store from './stores';
 function App() {
   // state variable
   // inc
@@ -36,10 +38,12 @@ function App() {
   console.log(a, b);
   return (
     <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity}}>
+    {/* // <Provider store={store}> */}
       <div className="App">
         <Products />
         <Cart />
       </div>
+    {/* </Provider> */}
     </CartContext.Provider>
   );
 }

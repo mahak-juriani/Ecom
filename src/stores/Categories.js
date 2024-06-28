@@ -5,20 +5,27 @@ export function loadCategories() {
                 return res.json();
             }
         ).then((res) => {
-            console.log(res);
+            console.log("Received", res);
             dispatch({ type: "LOAD_CATEGORIES_DONE", payload: res });
         })
     }
 }
 
 function categoriesReducer(state = {
-    categories: []
+    categories: [],
+    currentCategory: 0
 }, action) { 
     switch (action.type) {
         case "LOAD_CATEGORIES_DONE": {
             return {
                 ...state,
                 categories: action.payload
+            }
+        }
+        case "SET_CURRENT_CATEGORY": {
+            return {
+                ...state,
+                currentCategory: action.payload
             }
         }
         default:
